@@ -3,6 +3,5 @@ kind: workflow
 name: build
 
 on:
-  push:
-    branches:
-      - '**'
+  workflow_dispatch:
+  
