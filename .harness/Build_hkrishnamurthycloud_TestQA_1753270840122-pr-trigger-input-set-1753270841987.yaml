@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_hkrishnamurthycloud_TestQA_1753270840122-pr-trigger-input-set
+  identifier: Build_hkrishnamurthycloud_TestQA_1753270840122prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_hkrishnamurthycloud_TestQA_1753270840122
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
