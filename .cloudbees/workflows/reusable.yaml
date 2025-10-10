@@ -14,7 +14,7 @@ jobs:
   deploy:
     environment: ${{ inputs.environment }}
     steps:
-    - name: Fake deployment
+    - name: Fake deployment Test
       uses: docker://alpine:3.22
       run: |
         echo fake deployment
