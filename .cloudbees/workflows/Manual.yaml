@@ -1,0 +1,104 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: test
+on:
+  workflow_dispatch:
+    inputs:
+      TestTag:
+        type: choice
+        options:
+        - "@AdminCoreRegression"
+        - "@AdminLogin"
+        - "@Applications"
+        - "@Releases"
+        - "@Artifacts"
+        - "@ActionTest"
+        - "@Bitbucket"
+        - "@Cleanup"
+        - "@CoreRegression"
+        - "@EnvironmentTest"
+        - "@Evidence"
+        - "@FM"
+        - "@FmE2E"
+        - "@FmApi"
+        - "@Flags"
+        - "@FlagConfiguration"
+        - "@TargetGroups"
+        - "@CustomProperties"
+        - "@FindSecBugs"
+        - "@Github"
+        - "@Gitleaks"
+        - "@Grype"
+        - "@Gosec"
+        - "@Home"
+        - "@IntegrationTest"
+        - "@MarketplaceTest"
+        - "@Njsscan"
+        - "@NotificationTest"
+        - "@OrganizationTest"
+        - "@PipelineManagement"
+        - "@PropertyTest"
+        - "@SecurityCenterTest"
+        - "@SlaConfig"
+        - "@SummaryWidget"
+        - "@SyftSBOM"
+        - "@TestInsights"
+        - "@Trivy"
+        - "@UserInviteTest"
+        - "@UserManagementTest"
+        - "@VSMDashboard"
+        - "@WorkflowTest"
+        - "@CbpLogin"
+        - "@BlackDuckSecurityScan"
+        - "@JenkinsManagementTest"
+        - "@GHAIntegration"
+        - "@SecurityOverviewDashboard"
+        - "@CoveritySecurityScan"
+        - "@SonarqubeSecurityScan"
+        - "@TrivySecurityScan"
+        - "@GrypeSecurityScan"
+        - "@GHAExplicitScans"
+        - "@JFrogartifactory"
+        - "@AwsEcrIntegration"
+        - "@Triage"
+        default: "@CbpLogin"
+        required: true
+        description: Choose test tags to run tests related to that feature
+      Browser:
+        type: choice
+        options:
+        - chrome
+        - firefox
+        - safari
+        default: chrome
+        required: false
+        description: Choose which browser you want to run the tests
+      Environment:
+        type: choice
+        options:
+        - PROD
+        - QA
+        - PREPROD
+        default: PREPROD
+        required: true
+        description: Choose environment where test will run
+permissions:
+  scm-token-own: read
+  scm-token-org: read
+  id-token: write
+jobs:
+  test:
+    steps:
+    - name: Checkout Repository
+      uses: cloudbees-io/checkout@v1
+    - name: Install Dependencies
+      uses: docker://node:21.7-alpine3.18
+      run: |
+        npm ci
+    - name: Running automated e2e tests
+      id: run-smoke-tests
+      uses: docker://mcr.microsoft.com/playwright:v1.54.2-noble
+      env:
+        ENV: ${{ inputs.Environment }}
+      run: |
+        echo "Auto Triggering tests ENV on $ENV"
