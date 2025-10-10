@@ -1,0 +1,15 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: Test automation
+
+on:
+  push:
+    branches:
+    - '**'
+
+jobs:
+  outer-job:
+    uses: ./.cloudbees/workflows/reusable.yaml
+    with:
+      environment: max_env1
+    secrets: inherit
