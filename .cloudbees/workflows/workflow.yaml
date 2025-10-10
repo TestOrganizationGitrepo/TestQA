@@ -15,7 +15,7 @@ jobs:
       uses: docker://alpine:latest
       shell: sh
       run: |
-        echo "hello world Gerrit SCM"
+        echo "hello world GITHUB SCM PUSH from GIT"
 
   codecheck:
     outputs:
@@ -26,8 +26,8 @@ jobs:
       uses: docker://mcr.microsoft.com/playwright:v1.54.2-noble
       id: setvalues
       run: |
-        export ENV=GITLAB
-        export TAG=GITLABTag
+        export ENV='GITHUB'
+        export TAG='GITHUB TAG'
         echo "Auto Triggering  tests  on $ENV "
         echo "Auto Triggering  tests  on $TAG "
         echo $ENV > "$CLOUDBEES_OUTPUTS/envvalue"
@@ -45,8 +45,6 @@ jobs:
         username: '${{vars.TestGerritusername}}'
         password: '${{secrets.TestGerritpassword}}'
       run: |
-        export ENV=Gerrit
-        export TAG=GerritTag
         echo "Auto Triggering  tests  ENV on $ENV "
         echo "Auto Triggering  tests  TAG on $TAG "
         echo "Auto Triggering  tests  username on $username"
