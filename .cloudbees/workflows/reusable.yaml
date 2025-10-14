@@ -17,4 +17,4 @@ jobs:
     - name: Fake deployment Test
       uses: docker://alpine:3.22
       run: |
-        echo fake deployment
+        echo fake test deployment $environment
