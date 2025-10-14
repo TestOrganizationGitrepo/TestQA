@@ -12,9 +12,11 @@ on:
 
 jobs:
   deploy:
-    environment: ${{ inputs.environment }}
+    environment: ${{inputs.environment}}
     steps:
     - name: Fake deployment Test
       uses: docker://alpine:3.22
+      env:
+        ENV: ${{inputs.environment}}
       run: |
-        echo "fake test deployment ${{ inputs.environment }}"
+        echo "fake test deployment $ENV"
