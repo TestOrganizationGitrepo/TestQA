@@ -11,5 +11,5 @@ jobs:
   outer-job:
     uses: ./.cloudbees/workflows/reusable.yaml
     with:
-      environment: max_env1
+      environment: max_env1_test
     secrets: inherit
