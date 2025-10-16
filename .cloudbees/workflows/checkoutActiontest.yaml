@@ -1,0 +1,17 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: action
+name: checkout-install-action
+description: "Checkout the repository and install dependencies using Docker"
+
+runs:
+  using: composite
+  steps:
+  - name: Checkout Repository
+    uses: cloudbees-io/checkout@v1
+    with:
+      fetch-depth: "0"
+
+  - name: Install Dependencies
+    uses: docker://node:21.7-alpine3.18
+    run: |
+      npm ci
