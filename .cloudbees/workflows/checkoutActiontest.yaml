@@ -14,5 +14,9 @@ jobs:
     - name: Checkout Repository
       uses: cloudbees-io/checkout@v1
       with:
-       fetch-depth: "0"
-
+        fetch-depth: "0"
+    - name: Print Env
+      uses: docker://node:21.7-alpine3.18
+      run: |
+        echo "PWD: $PWD"
+        echo "HOME: $HOME"
