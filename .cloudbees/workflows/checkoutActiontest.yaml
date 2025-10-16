@@ -11,7 +11,7 @@ jobs:
   build:
     steps:
 
-    - name: Checkout Repository
+    - name: checkout
       uses: cloudbees-io/checkout@v1
       with:
         fetch-depth: "0"
