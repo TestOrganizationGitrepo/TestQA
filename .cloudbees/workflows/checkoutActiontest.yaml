@@ -20,3 +20,12 @@ jobs:
       run: |
         echo "PWD: $PWD"
         echo "HOME: $HOME"
+
+    - name: Display outputs
+      uses: docker://golang:1.20.3-alpine3.17
+      shell: sh
+      run: |
+          echo Repository URL = ${{ steps.checkout.outputs.repository-url }}
+          echo Commit ID = ${{ steps.checkout.outputs.commit }}
+          echo Commit URL = ${{ steps.checkout.outputs.commit-url }}
+          echo Ref = ${{ steps.checkout.outputs.ref }}    
