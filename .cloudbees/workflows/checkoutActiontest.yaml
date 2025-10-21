@@ -13,6 +13,8 @@ jobs:
     - name: checkout
       uses: cloudbees-io/checkout/.cloudbees/testing
       id: checkout
+      env:
+        RUNNER_DEBUG: "1"
       with:
         fetch-depth: "0"
         repository: cbp-qa-automation/qa-test-hello-world
