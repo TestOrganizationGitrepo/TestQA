@@ -19,6 +19,7 @@ jobs:
         provider: bitbucket_datacenter
         bitbucket-server-url: https://bitbucket.saas-preprod.beescloud.com
         token: ${{ secrets.BBDC_PAT}}
+        token-auth-type: bearer
 
     - name: Print Env
       uses: docker://node:21.7-alpine3.18
