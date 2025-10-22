@@ -12,7 +12,7 @@ jobs:
     steps:
     - name: checkout
       continue-on-error: true
-      uses: cloudbees-io/checkout@v1
+      uses: cloudbees-io/checkout/.cloudbees/testing@main
       id: checkout
       with:
         fetch-depth: "0"
@@ -25,7 +25,7 @@ jobs:
       run: |
         ls /cloudbees/home/.gitconfig
         cat /cloudbees/home/.gitconfig
-        
+
     - name: Print Env
       uses: docker://node:21.7-alpine3.18
       run: |
