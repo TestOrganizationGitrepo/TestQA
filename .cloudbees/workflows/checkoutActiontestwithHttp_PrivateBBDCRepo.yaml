@@ -15,7 +15,7 @@ jobs:
       id: checkout
       with:
         fetch-depth: "0"
-        repository: BTQAB/qa-test-bb
+        repository: btqab/qa-test-bb
         provider: bitbucket
         bitbucket-server-url: https://bitbucket.saas-preprod.beescloud.com
         token: ${{ secrets.BBDC_PAT}}

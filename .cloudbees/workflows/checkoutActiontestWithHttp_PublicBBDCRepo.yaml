@@ -15,7 +15,7 @@ jobs:
       id: checkout
       with:
         fetch-depth: "0"
-        repository: TEST-BBDC-UNIFY/test-bbdc-unify
+        repository: test-bbdc-unify/test-bbdc-unify
         provider: bitbucket
         bitbucket-server-url: https://bitbucket.saas-preprod.beescloud.com
     - name: Print Env
