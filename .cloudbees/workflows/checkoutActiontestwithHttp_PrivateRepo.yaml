@@ -12,7 +12,7 @@ jobs:
     steps:
     - name: checkout
       continue-on-error: true
-      uses: cloudbees-io/checkout@main
+      uses: cloudbees-io/checkout@v1
       id: checkout
       with:
         fetch-depth: "0"
