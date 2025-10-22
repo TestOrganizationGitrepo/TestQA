@@ -18,6 +18,7 @@ jobs:
         fetch-depth: "0"
         repository: cbp-qa-automation/TestPrivateRepo
         github-server-url: https://github.com
+        token: ${{ secrets.GH_PAT}}
 
     - uses: docker://alpine:3.20
       name: cat git-config
