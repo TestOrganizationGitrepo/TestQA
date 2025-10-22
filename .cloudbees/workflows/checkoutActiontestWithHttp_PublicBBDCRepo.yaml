@@ -16,7 +16,7 @@ jobs:
       with:
         fetch-depth: "0"
         repository: test-bbdc-unify/test-bbdc-unify
-        provider: bitbucket
+        provider: bitbucket_datacenter
         bitbucket-server-url: https://bitbucket.saas-preprod.beescloud.com
     - name: Print Env
       uses: docker://node:21.7-alpine3.18
