@@ -15,7 +15,7 @@ jobs:
       id: checkout
       with:
         fetch-depth: "0"
-        repository: cbp-qa-automation/qa-test-hello-world
+        repository: cbp-qa-automation/TestPrivateRepo
         github-server-url: https://github.com
     - name: Print Env
       uses: docker://node:21.7-alpine3.18
