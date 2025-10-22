@@ -11,12 +11,15 @@ jobs:
   build:
     steps:
     - name: checkout
-      uses: cloudbees-io/checkout@v1
+      uses: cloudbees-io/checkout/.cloudbees/testing@main
       id: checkout
       with:
         fetch-depth: "0"
-        repository: cbp-qa-automation/qa-test-hello-world
-        github-server-url: https://github.com
+        repository: BTQAB/qa-test-bb
+        provider: bitbucket
+        bitbucket-server-url: https://bitbucket.saas-preprod.beescloud.com
+        token: ${{ secrets.BBDC_PAT}}
+
     - name: Print Env
       uses: docker://node:21.7-alpine3.18
       run: |
