@@ -17,6 +17,7 @@ jobs:
         fetch-depth: "0"
         repository: cbp-qa-automation/qa-test-hello-world
         ssh-key:  ${{ secrets.MY_GitHubCheckout_SSH_KEY }}
+        provider: custom
     - name: Print Env
       uses: docker://node:21.7-alpine3.18
       run: |
