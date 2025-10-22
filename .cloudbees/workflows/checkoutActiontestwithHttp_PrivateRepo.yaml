@@ -11,12 +11,20 @@ jobs:
   build:
     steps:
     - name: checkout
+      continue-on-error: true
       uses: cloudbees-io/checkout@v1
       id: checkout
       with:
         fetch-depth: "0"
         repository: cbp-qa-automation/TestPrivateRepo
         github-server-url: https://github.com
+
+    - uses: docker://alpine:3.20
+      name: cat git-config
+      run: |
+        ls /cloudbees/home/.gitconfig
+        cat /cloudbees/home/.gitconfig
+        
     - name: Print Env
       uses: docker://node:21.7-alpine3.18
       run: |
