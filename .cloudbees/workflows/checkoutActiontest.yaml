@@ -11,14 +11,12 @@ jobs:
   build:
     steps:
     - name: checkout
-      uses: cloudbees-io/checkout/.cloudbees/testing
+      uses: cloudbees-io/checkout@v1
       id: checkout
-      env:
-        RUNNER_DEBUG: "1"
       with:
         fetch-depth: "0"
         repository: cbp-qa-automation/qa-test-hello-world
-        ssh-key:  ${{ secrets.MY_GitHubCheckout_SSH_KEY }}
+        github-server-url: https://github.com
     - name: Print Env
       uses: docker://node:21.7-alpine3.18
       run: |
