@@ -11,7 +11,7 @@ jobs:
   build:
     steps:
     - name: checkout
-      uses: cloudbees-io/checkout/.cloudbees/testing@v1
+      uses: cloudbees-io/checkout/.cloudbees/testing@4bc33b1a26745dc495bdb434f2053f82dcde0cf1
       id: checkout
       with:
         fetch-depth: "0"
