@@ -1,0 +1,38 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: Test automation caller test workflow
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+    - '**'
+jobs:
+  build:
+    steps:
+    - name: checkout
+      uses: cloudbees-io/checkout/.cloudbees/testing@4bc33b1a26745dc495bdb434f2053f82dcde0cf1
+      id: checkout
+      with:
+        fetch-depth: "0"
+        repository: cbp-qa-automation/qa-test-hello-world
+        ssh-key:  ${{ secrets.MY_GitHubCheckout_SSH_KEY }}
+        persist-credentials: true
+        
+
+    - name: Display outputs Git Values
+      uses: docker://mcr.microsoft.com/playwright:v1.54.2-noble
+      run: |
+          git pull
+          git submodule update --init --recursive
+
+         
+
+    - name: Display outputs
+      uses: docker://golang:1.20.3-alpine3.17
+      shell: sh
+      run: |
+        echo Repository URL = ${{ steps.checkout.outputs.repository-url }}
+        echo Commit ID = ${{ steps.checkout.outputs.commit }}
+        echo Commit URL = ${{ steps.checkout.outputs.commit-url }}
+        echo Ref = ${{ steps.checkout.outputs.ref }}    
