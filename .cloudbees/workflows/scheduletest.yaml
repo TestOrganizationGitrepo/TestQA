@@ -1,0 +1,65 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: main-test-workflow
+on:
+  schedule:
+  - cron: "10 * * * *" #
+
+permissions:
+  scm-token-own: read
+  scm-token-org: read
+
+jobs:
+  build:
+    steps:
+    - name: Say hello
+      uses: docker://alpine:latest
+      shell: sh
+      run: |
+        echo "hello world GitLab SCM"
+
+  codecheck:
+    outputs:
+      output1: ${{ steps.setvalues.outputs.envvalue }}
+      output2: ${{ steps.setvalues.outputs.tagvalue }}
+    steps:
+    - name: Environment and Test Tag Assignment Based On Commit Message
+      uses: docker://mcr.microsoft.com/playwright:v1.54.2-noble
+      id: setvalues
+      run: |
+        export ENV=GITLAB
+        export TAG=GITLABTag
+        echo "Auto Triggering  tests  on $ENV "
+        echo "Auto Triggering  tests  on $TAG "
+        echo $ENV > "$CLOUDBEES_OUTPUTS/envvalue"
+        echo $TAG > "$CLOUDBEES_OUTPUTS/tagvalue"
+
+  test:
+    needs: [ codecheck ]
+    steps:
+    - name: Running Automated E2E Tests
+      id: run-non-regression-tests
+      uses: docker://mcr.microsoft.com/playwright:v1.54.2-noble
+      env:
+        ENV: '${{needs.codecheck.outputs.output1}}'
+        TAG: '${{needs.codecheck.outputs.output2}}'
+        username: '${{vars.TestGerritusername}}'
+        password: '${{secrets.TestGerritpassword}}'
+      run: |
+        echo "Auto Triggering  tests  ENV on $ENV "
+        echo "Auto Triggering  tests  TAG on $TAG "
+        echo "Auto Triggering  tests  username on $username"
+        echo "Auto Triggering  tests password on $password"
+
+    - name: Publish workflow evidence item
+      uses: cloudbees-io/publish-evidence-item@v1
+      if: '${{always()}}'
+      with:
+        content: |
+          ## Test Automation Report Details:
+
+          | Report Link | Environment |
+          |-------------|-------------|
+          | [Test Automation Report] |
+
+          *(Right-click the link and choose "Open Link in New Tab" if the link doesn’t open in a new tab automatically.)*
