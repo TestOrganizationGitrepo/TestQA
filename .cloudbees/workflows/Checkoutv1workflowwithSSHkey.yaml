@@ -11,17 +11,22 @@ jobs:
   build:
     steps:
     - name: checkout
-      uses: cloudbees-io/checkout/.cloudbees/testing@main
+      uses: cloudbees-io/checkout/.cloudbees/testing@4bc33b1a26745dc495bdb434f2053f82dcde0cf1
       id: checkout
       with:
         fetch-depth: "0"
         repository: cbp-qa-automation/qa-test-hello-world
         ssh-key:  ${{ secrets.MY_GitHubCheckout_SSH_KEY }}
-    - name: Print Env
-      uses: docker://node:21.7-alpine3.18
+        persist-credentials: false
+        
+
+    - name: Display outputs Git Values
+      uses: docker://mcr.microsoft.com/playwright:v1.54.2-noble
       run: |
-        echo "PWD: $PWD"
-        echo "HOME: $HOME"
+          git pull
+          git submodule update --init --recursive
+
+         
 
     - name: Display outputs
       uses: docker://golang:1.20.3-alpine3.17

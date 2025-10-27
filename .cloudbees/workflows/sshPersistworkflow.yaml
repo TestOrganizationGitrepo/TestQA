@@ -11,26 +11,22 @@ jobs:
   build:
     steps:
     - name: checkout
-      continue-on-error: true
-      uses: cloudbees-io/checkout/.cloudbees/testing@CBP-24068
+      uses: cloudbees-io/checkout/.cloudbees/testing@4bc33b1a26745dc495bdb434f2053f82dcde0cf1
       id: checkout
       with:
         fetch-depth: "0"
-        repository: cbp-qa-automation/TestPrivateRepo
-        github-server-url: https://github.com
-        token: ${{ secrets.GH_PAT}}
+        repository: cbp-qa-automation/qa-test-hello-world
+        ssh-key:  ${{ secrets.MY_GitHubCheckout_SSH_KEY }}
+        persist-credentials: true
+        
 
-    - uses: docker://alpine:3.20
-      name: cat git-config
+    - name: Display outputs Git Values
+      uses: docker://mcr.microsoft.com/playwright:v1.54.2-noble
       run: |
-        ls /cloudbees/home/.gitconfig
-        cat /cloudbees/home/.gitconfig
+          git pull
+          git submodule update --init --recursive
 
-    - name: Print Env
-      uses: docker://node:21.7-alpine3.18
-      run: |
-        echo "PWD: $PWD"
-        echo "HOME: $HOME"
+         
 
     - name: Display outputs
       uses: docker://golang:1.20.3-alpine3.17
