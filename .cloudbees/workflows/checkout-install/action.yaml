@@ -1,0 +1,13 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: action
+name: checkout-install-action
+description: "Dummy action"
+
+runs:
+  using: composite
+  steps:
+
+  - name: Install Dependencies
+    uses: docker://node:21.7-alpine3.18
+    run: |
+      npm ci
