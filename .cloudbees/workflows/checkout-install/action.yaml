@@ -3,11 +3,18 @@ kind: action
 name: checkout-install-action
 description: "Dummy action"
 
+inputs:
+  environment:
+    description: "Deployment environment for testing"
+    required: true
+
 runs:
   using: composite
   steps:
 
   - name: Install Dependencies
     uses: docker://node:21.7-alpine3.18
+    env:
+      ENV: ${{ inputs.environment }}
     run: |
-      npm ci
+      echo "Installing dependencies for environment: $ENV"

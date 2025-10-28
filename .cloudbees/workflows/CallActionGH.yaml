@@ -1,0 +1,45 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: main-test-workflow
+on:
+  workflow_dispatch:
+    inputs:
+      ENV:
+        type: choice
+        options:
+        - QA
+        - PROD
+        - PREPROD
+        default: QA
+        required: true
+      TestTag:
+        type: choice
+        options:
+        - "@FmE2E"
+        - "@AspmRegression"
+        - "@BetterTogetherRegression"
+        - "@CoreRegression"
+        - "@NinjaRegression"
+        - "@Onboarding"
+        - "@CdroRegression"
+        - "@WorkflowRegression"
+        - "@AdminCoreRegression"
+        default: "@FmE2E"
+        required: true
+      Username:
+        type: choice
+        options:
+        - "admin user"
+        - "pod user"
+        default: "admin user"
+        required: true
+permissions:
+  scm-token-own: read
+  scm-token-org: read
+jobs:
+  codecheck:
+    steps:
+    - name: Checkout and Install Dependencies
+      uses: ./.cloudbees/workflows/checkout-install
+      with:
+        environment: ${{ inputs.ENV }}
