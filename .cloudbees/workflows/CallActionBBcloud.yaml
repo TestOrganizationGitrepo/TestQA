@@ -40,6 +40,6 @@ jobs:
   codecheck:
     steps:
     - name: Checkout and Install Dependencies
-      uses: https://bitbucket.org/testaccess2/testcbp2/src/main/.cloudbees/workflows/checkout-install/
+      uses: https://testaccess2-admin@bitbucket.org/testaccess2/testcbp2//.cloudbees/workflows/checkout-install/
       with:
         environment: ${{ inputs.ENV }}
