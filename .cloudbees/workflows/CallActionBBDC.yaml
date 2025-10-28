@@ -1,44 +1,15 @@
 apiVersion: automation.cloudbees.io/v1alpha1
 kind: workflow
-name: main-test-workflow
+name: My automation
+
 on:
-  workflow_dispatch:
-    inputs:
-      ENV:
-        type: choice
-        options:
-        - QA
-        - PROD
-        - PREPROD
-        default: QA
-        required: true
-      TestTag:
-        type: choice
-        options:
-        - "@FmE2E"
-        - "@AspmRegression"
-        - "@BetterTogetherRegression"
-        - "@CoreRegression"
-        - "@NinjaRegression"
-        - "@Onboarding"
-        - "@CdroRegression"
-        - "@WorkflowRegression"
-        - "@AdminCoreRegression"
-        default: "@FmE2E"
-        required: true
-      Username:
-        type: choice
-        options:
-        - "admin user"
-        - "pod user"
-        default: "admin user"
-        required: true
-permissions:
-  scm-token-own: read
-  scm-token-org: read
+  workflow_dispatch: {}
+
 jobs:
-  codecheck:
+  build:
     steps:
-    - name: Checkout and Install Dependencies
-      uses: https://bitbucket.saas-preprod.beescloud.com/scm/test-bbdc-unify/test-bbdc-unify.git/.cloubees/actions@main
-      
+      - name: action test
+        uses: https://bitbucket.saas-preprod.beescloud.com/scm/ct/wf2-java-hello-world.git/.cloudbees/actions/custom-action@main
+        with:
+          arg-1: |
+            Optimus Prime
