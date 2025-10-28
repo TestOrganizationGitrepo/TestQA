@@ -40,6 +40,5 @@ jobs:
   codecheck:
     steps:
     - name: Checkout and Install Dependencies
-      uses: https://bitbucket.saas-preprod.beescloud.com/scm/test-bbdc-unify/test-bbdc-unify//.cloudbees/workflows/checkout-install
-      with:
-        environment: ${{ inputs.ENV }}
+      uses: https://bitbucket.saas-preprod.beescloud.com/scm/test-bbdc-unify/test-bbdc-unify.git/.cloubees/actions/caller-action@main
+      
