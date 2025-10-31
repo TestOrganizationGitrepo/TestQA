@@ -12,12 +12,11 @@ jobs:
     steps:
     - name: checkout
       continue-on-error: true
-      uses: cloudbees-io/checkout/.cloudbees/testing@v2
+      uses: cloudbees-io/checkout/.cloudbees/testing # v2
       id: checkout
       with:
         fetch-depth: "0"
         repository: cbp-qa-automation/TestPrivateRepo
-        github-server-url: https://github.com
         token: ${{ secrets.GH_PAT}}
 
     - uses: docker://alpine:3.20

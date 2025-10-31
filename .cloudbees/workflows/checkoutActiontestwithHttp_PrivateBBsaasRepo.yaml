@@ -11,12 +11,11 @@ jobs:
   build:
     steps:
     - name: checkout
-      uses: cloudbees-io/checkout/.cloudbees/testing@v2
+      uses: cloudbees-io/checkout/.cloudbees/testing # v2
       id: checkout
       with:
         fetch-depth: "0"
         repository: testaccess2/testbitbucket
-        provider: bitbucket
         token: ${{ secrets.BBSAAS_PAT}}
     - name: Print Env
       uses: docker://node:21.7-alpine3.18
