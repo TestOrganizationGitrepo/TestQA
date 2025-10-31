@@ -57,7 +57,7 @@ jobs:
   build:
     steps:
       - name: action test
-        uses: https://bitbucket.saas-preprod.beescloud.com/scm/ct/wf2-java-hello-world.git/.cloudbees/actions/custom-action@main
+        uses: https://bitbucket.org/testaccess2/testcbp2.git/.cloudbees/workflows/checkout-install@main
         with:
           arg-1: |
             Optimus Prime
