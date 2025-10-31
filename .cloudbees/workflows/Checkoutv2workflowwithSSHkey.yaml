@@ -15,7 +15,7 @@ jobs:
       id: checkout
       with:
         fetch-depth: "0"
-        repository: cbp-qa-automation/qa-test-hello-world
+        repository: https://github.com/cbp-qa-automation/qa-test-hello-world.git
         ssh-key: ${{ secrets.MY_GitHubCheckout_SSH_KEY }}
         persist-credentials: false
 

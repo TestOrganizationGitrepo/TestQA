@@ -15,7 +15,7 @@ jobs:
       id: checkout
       with:
         fetch-depth: "0"
-        repository: test-bbdc-unify/test-bbdc-unify
+        repository: https://bitbucket.saas-preprod.beescloud.com/scm/test-bbdc-unify/test-bbdc-unify.git
 
     - name: Print Env
       uses: docker://node:21.7-alpine3.18

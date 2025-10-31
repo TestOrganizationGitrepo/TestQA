@@ -15,7 +15,7 @@ jobs:
       id: checkout
       with:
         fetch-depth: "0"
-        repository: btqab/qa-test-bb
+        repository: https://bitbucket.saas-preprod.beescloud.com/scm/btqab/qa-test-bb.git
         token: ${{ secrets.BBDC_PAT}}
         token-auth-type: bearer
 

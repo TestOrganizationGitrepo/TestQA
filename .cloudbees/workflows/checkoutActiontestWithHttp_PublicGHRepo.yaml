@@ -15,7 +15,7 @@ jobs:
       id: checkout
       with:
         fetch-depth: "0"
-        repository: cbp-qa-automation/qa-test-hello-world
+        repository: https://github.com/cbp-qa-automation/qa-test-hello-world.git
 
     - name: Print Env
       uses: docker://node:21.7-alpine3.18
@@ -29,4 +29,5 @@ jobs:
       run: |
         echo Repository URL = ${{ steps.checkout.outputs.repository-url }}
         echo Commit ID = ${{ steps.checkout.outputs.commit }}
+        echo Commit URL = ${{ steps.checkout.outputs.commit-url }}
         echo Ref = ${{ steps.checkout.outputs.ref }}    

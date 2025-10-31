@@ -16,7 +16,7 @@ jobs:
       id: checkout
       with:
         fetch-depth: "0"
-        repository: cbp-qa-automation/TestPrivateRepo
+        repository: https://github.com/cbp-qa-automation/TestPrivateRepo.git
         token: ${{ secrets.GH_PAT}}
 
     - uses: docker://alpine:3.20

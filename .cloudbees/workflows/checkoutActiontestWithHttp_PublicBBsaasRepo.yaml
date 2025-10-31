@@ -15,7 +15,7 @@ jobs:
       id: checkout
       with:
         fetch-depth: "0"
-        repository: testaccess2/testcbp
+        repository: https://testaccess2-admin@bitbucket.org/testaccess2/testcbp2.git
 
     - name: Print Env
       uses: docker://node:21.7-alpine3.18
