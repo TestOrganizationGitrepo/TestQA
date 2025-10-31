@@ -30,6 +30,5 @@ jobs:
       shell: sh
       run: |
         echo Repository URL = ${{ steps.checkout.outputs.repository-url }}
-        echo Commit ID = ${{ steps.checkout.outputs.commit }}
-        echo Commit URL = ${{ steps.checkout.outputs.commit-url }}
+        echo Commit ID = ${{ steps.checkout.outputs.commit }}}
         echo Ref = ${{ steps.checkout.outputs.ref }}    
