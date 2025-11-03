@@ -7,6 +7,10 @@ on:
   push:
     branches:
     - '**'
+
+permissions:
+  scm-token-org: read
+
 jobs:
   build:
     steps:
