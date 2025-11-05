@@ -23,6 +23,17 @@ jobs:
         # token: ${{ secrets.BBDC_PAT}}
         # token-auth-type: bearer
 
+    - name: checkout
+      uses: cloudbees-io/checkout@v1
+      id: checkout
+      with:
+        fetch-depth: "0"
+        repository: btqab/qa-test-bb
+        provider: bitbucket_datacenter
+        bitbucket-server-url: https://bitbucket.saas-preprod.beescloud.com
+        token: ${{ secrets.BBDC_PAT}}
+        token-auth-type: bearer
+
     - name: Print Env
       uses: docker://node:21.7-alpine3.18
       run: |
